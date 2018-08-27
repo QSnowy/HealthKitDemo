@@ -7,15 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A803F81021340457009936C5 /* StepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A803F80F21340457009936C5 /* StepViewController.m */; };
+		A803F8142134075F009936C5 /* WSDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A803F8112134075F009936C5 /* WSDatePickerView.m */; };
+		A803F8152134075F009936C5 /* WSDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A803F8132134075F009936C5 /* WSDatePickerView.xib */; };
+		A803F81821340920009936C5 /* NSDate+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A803F8162134091F009936C5 /* NSDate+Extensions.m */; };
+		A803F81B21340A1B009936C5 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = A803F81A21340A1B009936C5 /* UIView+Extension.m */; };
 		A8D04ACF212E820C006A464B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A8D04ACE212E820C006A464B /* AppDelegate.m */; };
 		A8D04AD2212E820C006A464B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8D04AD1212E820C006A464B /* ViewController.m */; };
 		A8D04AD5212E820C006A464B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8D04AD3212E820C006A464B /* Main.storyboard */; };
 		A8D04AD7212E820D006A464B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8D04AD6212E820D006A464B /* Assets.xcassets */; };
 		A8D04ADA212E820D006A464B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8D04AD8212E820D006A464B /* LaunchScreen.storyboard */; };
 		A8D04ADD212E820D006A464B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A8D04ADC212E820D006A464B /* main.m */; };
+		A8D04AE5212E83A2006A464B /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8D04AE4212E83A2006A464B /* HealthKit.framework */; };
+		A8D04AE7212E83A9006A464B /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8D04AE6212E83A9006A464B /* HealthKitUI.framework */; };
+		A8DCA9C82133DD680024FBF6 /* UIAlertController+QSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = A8DCA9C72133DD680024FBF6 /* UIAlertController+QSExtension.m */; };
+		A8DCA9CB2133E0630024FBF6 /* HKHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = A8DCA9CA2133E0630024FBF6 /* HKHandle.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A803F80E21340457009936C5 /* StepViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StepViewController.h; sourceTree = "<group>"; };
+		A803F80F21340457009936C5 /* StepViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StepViewController.m; sourceTree = "<group>"; };
+		A803F8112134075F009936C5 /* WSDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSDatePickerView.m; sourceTree = "<group>"; };
+		A803F8122134075F009936C5 /* WSDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSDatePickerView.h; sourceTree = "<group>"; };
+		A803F8132134075F009936C5 /* WSDatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSDatePickerView.xib; sourceTree = "<group>"; };
+		A803F8162134091F009936C5 /* NSDate+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extensions.m"; sourceTree = "<group>"; };
+		A803F8172134091F009936C5 /* NSDate+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extensions.h"; sourceTree = "<group>"; };
+		A803F81921340A1A009936C5 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		A803F81A21340A1B009936C5 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		A8D04ACA212E820C006A464B /* HealthKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8D04ACD212E820C006A464B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A8D04ACE212E820C006A464B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -26,6 +44,15 @@
 		A8D04AD9212E820D006A464B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A8D04ADB212E820D006A464B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8D04ADC212E820D006A464B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A8D04AE4212E83A2006A464B /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		A8D04AE6212E83A9006A464B /* HealthKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKitUI.framework; path = System/Library/Frameworks/HealthKitUI.framework; sourceTree = SDKROOT; };
+		A8DCA9C52133D4930024FBF6 /* HealthKit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HealthKit.entitlements; sourceTree = "<group>"; };
+		A8DCA9C62133DD680024FBF6 /* UIAlertController+QSExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+QSExtension.h"; sourceTree = "<group>"; };
+		A8DCA9C72133DD680024FBF6 /* UIAlertController+QSExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+QSExtension.m"; sourceTree = "<group>"; };
+		A8DCA9C92133E0630024FBF6 /* HKHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HKHandle.h; sourceTree = "<group>"; };
+		A8DCA9CA2133E0630024FBF6 /* HKHandle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HKHandle.m; sourceTree = "<group>"; };
+		A8DCA9CC2133E3B10024FBF6 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		A8DCA9CD2133E3D20024FBF6 /* HealthKit.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HealthKit.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +60,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8D04AE7212E83A9006A464B /* HealthKitUI.framework in Frameworks */,
+				A8D04AE5212E83A2006A464B /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +73,7 @@
 			children = (
 				A8D04ACC212E820C006A464B /* HealthKit */,
 				A8D04ACB212E820C006A464B /* Products */,
+				A8D04AE3212E83A2006A464B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,17 +88,50 @@
 		A8D04ACC212E820C006A464B /* HealthKit */ = {
 			isa = PBXGroup;
 			children = (
+				A8DCA9CE2133EB140024FBF6 /* Tool */,
+				A8DCA9C52133D4930024FBF6 /* HealthKit.entitlements */,
 				A8D04ACD212E820C006A464B /* AppDelegate.h */,
 				A8D04ACE212E820C006A464B /* AppDelegate.m */,
 				A8D04AD0212E820C006A464B /* ViewController.h */,
 				A8D04AD1212E820C006A464B /* ViewController.m */,
+				A803F80E21340457009936C5 /* StepViewController.h */,
+				A803F80F21340457009936C5 /* StepViewController.m */,
 				A8D04AD3212E820C006A464B /* Main.storyboard */,
 				A8D04AD6212E820D006A464B /* Assets.xcassets */,
 				A8D04AD8212E820D006A464B /* LaunchScreen.storyboard */,
 				A8D04ADB212E820D006A464B /* Info.plist */,
 				A8D04ADC212E820D006A464B /* main.m */,
+				A8DCA9CD2133E3D20024FBF6 /* HealthKit.pch */,
 			);
 			path = HealthKit;
+			sourceTree = "<group>";
+		};
+		A8D04AE3212E83A2006A464B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A8D04AE6212E83A9006A464B /* HealthKitUI.framework */,
+				A8D04AE4212E83A2006A464B /* HealthKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A8DCA9CE2133EB140024FBF6 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				A8DCA9C92133E0630024FBF6 /* HKHandle.h */,
+				A8DCA9CA2133E0630024FBF6 /* HKHandle.m */,
+				A8DCA9CC2133E3B10024FBF6 /* Common.h */,
+				A8DCA9C62133DD680024FBF6 /* UIAlertController+QSExtension.h */,
+				A8DCA9C72133DD680024FBF6 /* UIAlertController+QSExtension.m */,
+				A803F81921340A1A009936C5 /* UIView+Extension.h */,
+				A803F81A21340A1B009936C5 /* UIView+Extension.m */,
+				A803F8122134075F009936C5 /* WSDatePickerView.h */,
+				A803F8112134075F009936C5 /* WSDatePickerView.m */,
+				A803F8132134075F009936C5 /* WSDatePickerView.xib */,
+				A803F8172134091F009936C5 /* NSDate+Extensions.h */,
+				A803F8162134091F009936C5 /* NSDate+Extensions.m */,
+			);
+			path = Tool;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -102,6 +165,11 @@
 				TargetAttributes = {
 					A8D04AC9212E820C006A464B = {
 						CreatedOnToolsVersion = 9.4;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -130,6 +198,7 @@
 			files = (
 				A8D04ADA212E820D006A464B /* LaunchScreen.storyboard in Resources */,
 				A8D04AD7212E820D006A464B /* Assets.xcassets in Resources */,
+				A803F8152134075F009936C5 /* WSDatePickerView.xib in Resources */,
 				A8D04AD5212E820C006A464B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,8 +210,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A803F81B21340A1B009936C5 /* UIView+Extension.m in Sources */,
+				A803F81821340920009936C5 /* NSDate+Extensions.m in Sources */,
+				A8DCA9C82133DD680024FBF6 /* UIAlertController+QSExtension.m in Sources */,
 				A8D04AD2212E820C006A464B /* ViewController.m in Sources */,
+				A803F81021340457009936C5 /* StepViewController.m in Sources */,
+				A803F8142134075F009936C5 /* WSDatePickerView.m in Sources */,
 				A8D04ADD212E820D006A464B /* main.m in Sources */,
+				A8DCA9CB2133E0630024FBF6 /* HKHandle.m in Sources */,
 				A8D04ACF212E820C006A464B /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,7 +358,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HealthKit/HealthKit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B2CNWLB5AM;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/HealthKit/HealthKit.pch";
 				INFOPLIST_FILE = HealthKit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -299,7 +378,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HealthKit/HealthKit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B2CNWLB5AM;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/HealthKit/HealthKit.pch";
 				INFOPLIST_FILE = HealthKit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
