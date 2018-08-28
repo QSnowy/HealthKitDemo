@@ -23,7 +23,8 @@
 + (NSSet *)defaultHKSet
 {
     // 步数
-    NSSet *set = [NSSet setWithObjects:[HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount],nil];
+    NSSet *set = [NSSet setWithObjects:
+                  [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount],nil];
     
     return set;
 }
@@ -64,6 +65,46 @@
                                       localIdentifier:@"华为荣耀3手环"
                                   UDIDeviceIdentifier:@"4c29ff44-e385-4aa4-ad20-c5fa84314cdb"];
     return device;
+}
+
++ (void)read{
+    
+    HKHealthStore *store = [self singleStore];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    NSDate *now = [NSDate date];
+    
+    NSDateComponents *components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:now];
+    
+    NSDate *startDate = [calendar dateFromComponents:components];
+    
+    NSDate *endDate = [calendar dateByAddingUnit:NSCalendarUnitDay value:1 toDate:startDate options:0];
+    
+    HKSampleType *sampleType = [HKSampleType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
+    NSPredicate *predicate = [HKQuery predicateForSamplesWithStartDate:startDate endDate:endDate options:HKQueryOptionNone];
+    
+    HKSampleQuery *query = [[HKSampleQuery alloc] initWithSampleType:sampleType predicate:predicate limit:HKObjectQueryNoLimit sortDescriptors:nil resultsHandler:^(HKSampleQuery *query, NSArray *results, NSError *error) {
+        if (!results) {
+            NSLog(@"An error occured fetching the user's tracked food. In your app, try to handle this gracefully. The error was: %@.", error);
+            abort();
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+
+            
+            for (HKQuantitySample *sample in results) {
+
+                double count = [sample.quantity doubleValueForUnit:[HKUnit countUnit]];
+                NSLog(@"count = %@",@(count));
+
+            }
+
+        });
+    }];
+    
+    [store executeQuery:query];
+    
+    
 }
 
 + (void)saveHKObject:(HKObject *)obj completion:(void (^) (BOOL suc, NSError *error))completion{

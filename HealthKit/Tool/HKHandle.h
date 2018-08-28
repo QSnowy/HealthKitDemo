@@ -19,6 +19,8 @@
 + (void)requsetDefaultAuth:(void(^)(BOOL suc, NSString *msg))complention;
 // 写入数据的设备信息
 + (HKDevice *)defaultDevice;
+// 读取健康数据
++ (void)read;
 // 保存健康数据
 + (void)saveHKObject:(HKObject *)obj completion:(void (^) (BOOL suc, NSError *error))completion;
 

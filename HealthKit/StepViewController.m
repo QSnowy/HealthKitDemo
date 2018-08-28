@@ -94,6 +94,11 @@
     }];
     
 }
+- (IBAction)readSteps:(id)sender {
+    
+    [HKHandle read];
+    
+}
 // MARK: - UITextInput delegate
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     

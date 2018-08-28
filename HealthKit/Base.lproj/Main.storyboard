@@ -94,10 +94,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6D1-1P-36h">
-                                <rect key="frame" x="25" y="269" width="325" height="35"/>
+                                <rect key="frame" x="25" y="269" width="325" height="40"/>
                                 <color key="backgroundColor" red="0.10980392160000001" green="0.47450980390000003" blue="0.90588235289999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="UM4-Vi-cXJ"/>
+                                    <constraint firstAttribute="height" constant="40" id="UM4-Vi-cXJ"/>
                                 </constraints>
                                 <state key="normal" title="写入"/>
                                 <connections>
@@ -134,14 +134,28 @@
                                     <action selector="chooseEndTime:" destination="9mH-kt-m0i" eventType="touchUpInside" id="idb-aL-0P9"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rGO-r9-r2J">
+                                <rect key="frame" x="25" y="324" width="325" height="40"/>
+                                <color key="backgroundColor" red="0.10980392160000001" green="0.47450980390000003" blue="0.90588235289999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="XiY-OI-TOm"/>
+                                </constraints>
+                                <state key="normal" title="读取"/>
+                                <connections>
+                                    <action selector="readSteps:" destination="9mH-kt-m0i" eventType="touchUpInside" id="vp3-dQ-pgk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="rGO-r9-r2J" firstAttribute="leading" secondItem="fyR-SZ-vjg" secondAttribute="leading" constant="25" id="6RP-mA-hc6"/>
                             <constraint firstItem="Pqc-nQ-akg" firstAttribute="top" secondItem="cNn-Vd-DN2" secondAttribute="bottom" constant="15" id="BzA-ac-WKz"/>
                             <constraint firstItem="6D1-1P-36h" firstAttribute="top" secondItem="Pqc-nQ-akg" secondAttribute="bottom" constant="40" id="F9W-eG-5SI"/>
+                            <constraint firstItem="rGO-r9-r2J" firstAttribute="top" secondItem="6D1-1P-36h" secondAttribute="bottom" constant="15" id="Gl7-pC-vib"/>
                             <constraint firstItem="Pqc-nQ-akg" firstAttribute="leading" secondItem="fyR-SZ-vjg" secondAttribute="leading" constant="50" id="LS9-an-bpg"/>
                             <constraint firstItem="M3H-lX-Knq" firstAttribute="top" secondItem="fyR-SZ-vjg" secondAttribute="top" constant="25" id="UUm-79-ZQV"/>
                             <constraint firstItem="M3H-lX-Knq" firstAttribute="leading" secondItem="fyR-SZ-vjg" secondAttribute="leading" constant="25" id="YRa-26-xJP"/>
+                            <constraint firstItem="fyR-SZ-vjg" firstAttribute="trailing" secondItem="rGO-r9-r2J" secondAttribute="trailing" constant="25" id="ZPH-lW-5TJ"/>
                             <constraint firstItem="fyR-SZ-vjg" firstAttribute="trailing" secondItem="M3H-lX-Knq" secondAttribute="trailing" constant="25" id="aSv-cr-l6u"/>
                             <constraint firstItem="fyR-SZ-vjg" firstAttribute="trailing" secondItem="cNn-Vd-DN2" secondAttribute="trailing" constant="50" id="gW6-gN-zkP"/>
                             <constraint firstItem="fyR-SZ-vjg" firstAttribute="trailing" secondItem="6D1-1P-36h" secondAttribute="trailing" constant="25" id="jOh-cL-0hI"/>
