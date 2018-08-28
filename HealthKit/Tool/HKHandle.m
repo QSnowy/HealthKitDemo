@@ -22,32 +22,31 @@
 
 + (NSSet *)defaultHKSet
 {
-    
-    NSSet *set = [NSSet setWithObjects:
-                  [HKObjectType workoutType],
-                  [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDistanceCycling],
-                  [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount],nil];
+    // 步数
+    NSSet *set = [NSSet setWithObjects:[HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount],nil];
     
     return set;
 }
 
-+ (void)requsetDefaultAuth:(void(^)(BOOL suc))complention{
++ (void)requsetDefaultAuth:(void(^)(BOOL suc, NSString *msg))complention{
     
     HKHealthStore *store = [self singleStore];
     if (![HKHealthStore isHealthDataAvailable]){
-        
+        // 设备不支持 HealthKit
         if (complention){
-            complention(NO);
+            complention(NO, @"设备不支持HealthKit");
         }
         return;
     }
     
-    [store requestAuthorizationToShareTypes:[self defaultHKSet] readTypes:[self defaultHKSet] completion:^(BOOL success, NSError * _Nullable error) {
+    // 请求相应健康权限
+    NSSet *hkset = [self defaultHKSet];
+    [store requestAuthorizationToShareTypes:hkset readTypes:hkset completion:^(BOOL success, NSError * _Nullable error) {
         
         NSLog(@"auth success = %@, error = %@",@(success), error);
         
         if (complention){
-            complention(success);
+            complention(success, error.localizedDescription);
         }
         
     }];
@@ -69,8 +68,11 @@
 
 + (void)saveHKObject:(HKObject *)obj completion:(void (^) (BOOL suc, NSError *error))completion{
     
+    if (![obj isKindOfClass:[HKObject class]]){
+        return;
+    }
     HKHealthStore *store = [self singleStore];
-    
+    // 保存健康数据
     [store saveObject:obj withCompletion:^(BOOL success, NSError * _Nullable error) {
         
         if (completion){
@@ -82,7 +84,6 @@
     }];
     
 }
-
 
 
 @end

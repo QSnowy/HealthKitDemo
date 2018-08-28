@@ -32,9 +32,11 @@
 }
 - (IBAction)auth:(id)sender {
     
-    [HKHandle requsetDefaultAuth:^(BOOL suc) {
+    [HKHandle requsetDefaultAuth:^(BOOL suc, NSString *msg) {
        
-        
+        if (!suc){
+            [UIAlertController showSimpleAlertWithTitle:@"提示" message:msg presentdViewController:self];
+        }
         
     }];
     
@@ -100,7 +102,7 @@
     
     HKHealthStore *store = [HKHandle singleStore];
     
-    [HKHandle requsetDefaultAuth:^(BOOL success) {
+    [HKHandle requsetDefaultAuth:^(BOOL success, NSString *msg) {
         
         if (!success){
             return ;

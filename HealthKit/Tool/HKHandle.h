@@ -11,15 +11,15 @@
 
 @interface HKHandle : NSObject
 
+// HealthKit 实例
 + (HKHealthStore *)singleStore;
-
+// 默认要访问的HealthKit权限
 + (NSSet *)defaultHKSet;
-
-+ (void)requsetDefaultAuth:(void(^)(BOOL suc))complention;
-
+// 请求获取HealthKit权限
++ (void)requsetDefaultAuth:(void(^)(BOOL suc, NSString *msg))complention;
+// 写入数据的设备信息
 + (HKDevice *)defaultDevice;
-
-
+// 保存健康数据
 + (void)saveHKObject:(HKObject *)obj completion:(void (^) (BOOL suc, NSError *error))completion;
 
 @end
