@@ -11,7 +11,6 @@
 #import "HKHandle.h"
 #import "WSDatePickerView.h"
 
-
 @interface StepViewController () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *stepTF;
@@ -33,6 +32,7 @@
     [super viewDidLoad];
 
     _stepTF.delegate = self;
+    [self readSteps:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -96,7 +96,96 @@
 }
 - (IBAction)readSteps:(id)sender {
     
-    [HKHandle read];
+    HKSampleType *stepType = [HKSampleType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
+    [HKHandle readDataWithSampleType:stepType completion:^(NSArray *results, NSError *error) {
+        // 切换主线程
+        dispatch_async(dispatch_get_main_queue(), ^{
+           
+            if (!results){
+                NSLog(@"查询失败了 error = %@",error);
+                return ;
+            }
+            NSInteger sum = 0;
+            for (HKQuantitySample *sample in results) {
+                double count = [sample.quantity doubleValueForUnit:[HKUnit countUnit]];
+                sum += count;
+                NSLog(@"count = %@",@(count));
+
+            }
+            self.title = [NSString stringWithFormat:@"%@",@(sum)];
+
+            
+        });
+    }];
+
+    
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *interval = [[NSDateComponents alloc] init];
+    interval.day = 1;
+    
+    // Set the anchor date to Monday at 3:00 a.m.
+    NSDateComponents *anchorComponents =
+    [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth |
+     NSCalendarUnitYear | NSCalendarUnitWeekday fromDate:[NSDate date]];
+    
+    NSInteger offset = 1;
+    anchorComponents.day -= offset;
+    anchorComponents.hour = 0;
+    
+    NSDate *anchorDate = [calendar dateFromComponents:anchorComponents];
+    
+    HKStatisticsQuery;
+    HKQuantityType *quantityType =
+    [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
+    
+    // Create the query
+    HKStatisticsCollectionQuery *query =
+    [[HKStatisticsCollectionQuery alloc] initWithQuantityType:quantityType
+                                      quantitySamplePredicate:nil
+                                                      options:HKStatisticsOptionCumulativeSum
+                                                   anchorDate:anchorDate
+                                           intervalComponents:interval];
+    
+    // Set the results handler
+    query.initialResultsHandler = ^(HKStatisticsCollectionQuery *query, HKStatisticsCollection *results, NSError *error) {
+        
+        if (error) {
+            // Perform proper error handling here
+            NSLog(@"*** An error occurred while calculating the statistics: %@ ***",
+                  error.localizedDescription);
+            abort();
+        }
+        
+        NSDate *endDate = [NSDate date];
+        NSDate *startDate = [calendar
+                             dateByAddingUnit:NSCalendarUnitDay
+                             value:-1
+                             toDate:endDate
+                             options:0];
+        
+        // Plot the weekly step counts over the past 3 months
+        [results enumerateStatisticsFromDate:startDate
+                                      toDate:endDate
+                                   withBlock:^(HKStatistics *result, BOOL *stop) {
+                                       
+                                       HKQuantity *quantity = result.sumQuantity;
+                                       if (quantity) {
+                                           NSDate *date = result.startDate;
+                                           double value = [quantity doubleValueForUnit:[HKUnit countUnit]];
+                                           NSLog(@"statistics count = %@",@(value));
+                                           
+                                           // Call a custom method to plot each data point.
+                                           
+                                       }
+                                       
+                                   }];
+    };
+    
+    [[HKHandle singleStore] executeQuery:query];
+    
+    
+    
     
 }
 // MARK: - UITextInput delegate

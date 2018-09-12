@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <HealthKit/HealthKit.h>
+//#import <HealthKit/HealthKit.h>
+@import HealthKit;
 
 @interface HKHandle : NSObject
 
@@ -20,7 +21,8 @@
 // 写入数据的设备信息
 + (HKDevice *)defaultDevice;
 // 读取健康数据
-+ (void)read;
++ (void)readDataWithSampleType:(HKSampleType *)type completion:(void(^)(NSArray *results, NSError *error))completion;
++ (void)readStatisticsDataWithType:(HKQuantityType *)type option:(HKStatisticsOptions)option completion:(void(^)(HKStatistics *result, NSError *error))completion;
 // 保存健康数据
 + (void)saveHKObject:(HKObject *)obj completion:(void (^) (BOOL suc, NSError *error))completion;
 

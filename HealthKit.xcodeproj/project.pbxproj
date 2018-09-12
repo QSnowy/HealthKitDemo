@@ -18,8 +18,8 @@
 		A8D04AD7212E820D006A464B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8D04AD6212E820D006A464B /* Assets.xcassets */; };
 		A8D04ADA212E820D006A464B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8D04AD8212E820D006A464B /* LaunchScreen.storyboard */; };
 		A8D04ADD212E820D006A464B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A8D04ADC212E820D006A464B /* main.m */; };
-		A8D04AE5212E83A2006A464B /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8D04AE4212E83A2006A464B /* HealthKit.framework */; };
 		A8D04AE7212E83A9006A464B /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8D04AE6212E83A9006A464B /* HealthKitUI.framework */; };
+		A8D80711213E958D00DB5D21 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8D80710213E958D00DB5D21 /* HealthKit.framework */; };
 		A8DCA9C82133DD680024FBF6 /* UIAlertController+QSExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = A8DCA9C72133DD680024FBF6 /* UIAlertController+QSExtension.m */; };
 		A8DCA9CB2133E0630024FBF6 /* HKHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = A8DCA9CA2133E0630024FBF6 /* HKHandle.m */; };
 /* End PBXBuildFile section */
@@ -44,8 +44,8 @@
 		A8D04AD9212E820D006A464B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A8D04ADB212E820D006A464B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8D04ADC212E820D006A464B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A8D04AE4212E83A2006A464B /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		A8D04AE6212E83A9006A464B /* HealthKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKitUI.framework; path = System/Library/Frameworks/HealthKitUI.framework; sourceTree = SDKROOT; };
+		A8D80710213E958D00DB5D21 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		A8DCA9C52133D4930024FBF6 /* HealthKit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HealthKit.entitlements; sourceTree = "<group>"; };
 		A8DCA9C62133DD680024FBF6 /* UIAlertController+QSExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+QSExtension.h"; sourceTree = "<group>"; };
 		A8DCA9C72133DD680024FBF6 /* UIAlertController+QSExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+QSExtension.m"; sourceTree = "<group>"; };
@@ -61,7 +61,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8D04AE7212E83A9006A464B /* HealthKitUI.framework in Frameworks */,
-				A8D04AE5212E83A2006A464B /* HealthKit.framework in Frameworks */,
+				A8D80711213E958D00DB5D21 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,8 +109,8 @@
 		A8D04AE3212E83A2006A464B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A8D80710213E958D00DB5D21 /* HealthKit.framework */,
 				A8D04AE6212E83A9006A464B /* HealthKitUI.framework */,
-				A8D04AE4212E83A2006A464B /* HealthKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -160,6 +160,7 @@
 		A8D04AC2212E820C006A464B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = "";
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = Joy;
 				TargetAttributes = {
@@ -360,15 +361,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HealthKit/HealthKit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B2CNWLB5AM;
+				DEVELOPMENT_TEAM = GA5T62MH6W;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HealthKit/HealthKit.pch";
 				INFOPLIST_FILE = HealthKit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Joy.HealthKit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joy.healthKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -380,15 +382,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HealthKit/HealthKit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B2CNWLB5AM;
+				DEVELOPMENT_TEAM = GA5T62MH6W;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HealthKit/HealthKit.pch";
 				INFOPLIST_FILE = HealthKit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Joy.HealthKit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joy.healthKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -78,7 +78,7 @@
         NSDate *start = [NSDate dateWithTimeIntervalSinceNow:-1800];
         NSDate *end = [NSDate date];
         HKWorkout *run = [HKWorkout workoutWithActivityType:HKWorkoutActivityTypeRunning startDate:start endDate:end workoutEvents:nil totalEnergyBurned:energyBurned totalDistance:distance metadata:nil];
-        [self saveWorkout:run];
+        [self saveHealthObject:run];
         
     }else if (row == 1){
         
@@ -97,7 +97,7 @@
     
 }
 
-- (void)saveWorkout:(HKObject *)obj{
+- (void)saveHealthObject:(HKObject *)obj{
     
     
     HKHealthStore *store = [HKHandle singleStore];

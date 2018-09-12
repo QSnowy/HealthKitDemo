@@ -71,7 +71,7 @@
     
     HKHealthStore *store = [self singleStore];
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    
+
     NSDate *now = [NSDate date];
     
     NSDateComponents *components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:now];
@@ -106,6 +106,64 @@
     
     
 }
+// MARK: - read method list
+// 读取记录list
++ (void)readDataWithSampleType:(HKSampleType *)type completion:(void(^)(NSArray *results, NSError *error))completion{
+    
+    NSPredicate *predicate = [self todayPredicate];
+    
+    HKSampleQuery *query = [[HKSampleQuery alloc] initWithSampleType:type predicate:predicate limit:HKObjectQueryNoLimit sortDescriptors:nil resultsHandler:^(HKSampleQuery * _Nonnull query, NSArray<__kindof HKSample *> * _Nullable results, NSError * _Nullable error) {
+        
+        if (completion){
+            
+            completion(results, error);
+        }
+        
+    }];
+    
+    HKHealthStore *store = [self singleStore];
+    [store executeQuery:query];
+
+    
+}
+// 读取统计
++ (void)readStatisticsDataWithType:(HKQuantityType *)type option:(HKStatisticsOptions)option completion:(void(^)(HKStatistics *result, NSError *error))completion{
+    
+    HKHealthStore *store = [self singleStore];
+    NSPredicate *predicate = [self todayPredicate];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDate *now = [NSDate date];
+    NSDateComponents *components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:now];
+    components.day -= 1;
+    NSDate *startDate = [calendar dateFromComponents:components];
+    NSDate *endDate = [calendar dateByAddingUnit:NSCalendarUnitDay value:2 toDate:startDate options:0];
+    predicate = [HKQuery predicateForSamplesWithStartDate:startDate endDate:endDate options:HKQueryOptionStrictStartDate];
+    
+    HKStatisticsQuery *statisticsQuery = [[HKStatisticsQuery alloc] initWithQuantityType:type quantitySamplePredicate:predicate options:HKStatisticsOptionSeparateBySource completionHandler:^(HKStatisticsQuery * _Nonnull query, HKStatistics * _Nullable result, NSError * _Nullable error) {
+        
+        if (completion){
+            completion(result, error);
+        }
+        
+    }];
+    
+    [store executeQuery:statisticsQuery];
+
+}
+
+
++ (NSPredicate *)todayPredicate{
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDate *now = [NSDate date];
+    NSDateComponents *components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:now];
+    NSDate *startDate = [calendar dateFromComponents:components];
+    NSDate *endDate = [calendar dateByAddingUnit:NSCalendarUnitDay value:1 toDate:startDate options:0];
+    NSPredicate *predicate = [HKQuery predicateForSamplesWithStartDate:startDate endDate:endDate options:HKQueryOptionStrictStartDate];
+
+    return predicate;
+}
+// MARK: - save health object
 
 + (void)saveHKObject:(HKObject *)obj completion:(void (^) (BOOL suc, NSError *error))completion{
     
