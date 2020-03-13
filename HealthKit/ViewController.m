@@ -27,7 +27,28 @@
     _datasource = @[@"体能训练",@"行走步数",@"能量消耗",@"爬升楼层"];
     _tableView.tableFooterView = [UIView new];
     
-
+    [self judgeAuth];
+    
+}
+// 判断当前应用权限
+- (void)judgeAuth {
+    
+    HKAuthorizationStatus status = [HKHandle currentHKAuthStatus];
+    if (status == HKAuthorizationStatusNotDetermined) {
+        
+        [HKHandle requsetDefaultAuth:^(BOOL suc, NSString *msg) {
+            
+        }];
+        
+    }else if (status == HKAuthorizationStatusSharingDenied) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"当前应用没有获取步数权限，请到设置页面授权" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"前往设置" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self.class gotoAppSettingPage];
+        }];
+        [alert addAction:action];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
     
 }
 - (IBAction)auth:(id)sender {
@@ -100,7 +121,7 @@
 - (void)saveHealthObject:(HKObject *)obj{
     
     
-    HKHealthStore *store = [HKHandle singleStore];
+    HKHealthStore *store = [HKHandle defaultHKStore];
     
     [HKHandle requsetDefaultAuth:^(BOOL success, NSString *msg) {
         
@@ -127,5 +148,19 @@
     // Dispose of any resources that can be recreated.
 }
 
+
++ (void)gotoAppSettingPage
+{
+    NSString *urlString = UIApplicationOpenSettingsURLString;
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:urlString]]) {
+        
+        if (@available(iOS 10.0, *)) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString] options:@{} completionHandler:nil];
+        } else {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+        }
+    }
+    
+}
 
 @end

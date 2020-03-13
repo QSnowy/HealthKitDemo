@@ -135,7 +135,6 @@
     
     NSDate *anchorDate = [calendar dateFromComponents:anchorComponents];
     
-    HKStatisticsQuery;
     HKQuantityType *quantityType =
     [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
     
@@ -182,7 +181,7 @@
                                    }];
     };
     
-    [[HKHandle singleStore] executeQuery:query];
+    [[HKHandle defaultHKStore] executeQuery:query];
     
     
     

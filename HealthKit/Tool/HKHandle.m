@@ -10,7 +10,7 @@
 
 @implementation HKHandle
 
-+ (HKHealthStore *)singleStore{
++ (HKHealthStore *)defaultHKStore {
     
     static HKHealthStore *store;
     static dispatch_once_t onceToken;
@@ -20,7 +20,7 @@
     return store;
 }
 
-+ (NSSet *)defaultHKSet
++ (NSSet *)defaultHKAccessSet
 {
     // 步数
     NSSet *set = [NSSet setWithObjects:
@@ -29,9 +29,18 @@
     return set;
 }
 
++ (HKAuthorizationStatus)currentHKAuthStatus {
+    
+    // 判断当前应用的健康数据权限
+    HKHealthStore *store = [HKHandle defaultHKStore];
+    HKAuthorizationStatus status = [store authorizationStatusForType:[HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount]];
+    return status;
+}
+
+
 + (void)requsetDefaultAuth:(void(^)(BOOL suc, NSString *msg))complention{
     
-    HKHealthStore *store = [self singleStore];
+    HKHealthStore *store = [self defaultHKStore];
     if (![HKHealthStore isHealthDataAvailable]){
         // 设备不支持 HealthKit
         if (complention){
@@ -41,7 +50,7 @@
     }
     
     // 请求相应健康权限
-    NSSet *hkset = [self defaultHKSet];
+    NSSet *hkset = [self defaultHKAccessSet];
     [store requestAuthorizationToShareTypes:hkset readTypes:hkset completion:^(BOOL success, NSError * _Nullable error) {
         
         NSLog(@"auth success = %@, error = %@",@(success), error);
@@ -69,7 +78,7 @@
 
 + (void)read{
     
-    HKHealthStore *store = [self singleStore];
+    HKHealthStore *store = [self defaultHKStore];
     NSCalendar *calendar = [NSCalendar currentCalendar];
 
     NSDate *now = [NSDate date];
@@ -121,7 +130,7 @@
         
     }];
     
-    HKHealthStore *store = [self singleStore];
+    HKHealthStore *store = [self defaultHKStore];
     [store executeQuery:query];
 
     
@@ -129,7 +138,7 @@
 // 读取统计
 + (void)readStatisticsDataWithType:(HKQuantityType *)type option:(HKStatisticsOptions)option completion:(void(^)(HKStatistics *result, NSError *error))completion{
     
-    HKHealthStore *store = [self singleStore];
+    HKHealthStore *store = [self defaultHKStore];
     NSPredicate *predicate = [self todayPredicate];
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDate *now = [NSDate date];
@@ -170,7 +179,7 @@
     if (![obj isKindOfClass:[HKObject class]]){
         return;
     }
-    HKHealthStore *store = [self singleStore];
+    HKHealthStore *store = [self defaultHKStore];
     // 保存健康数据
     [store saveObject:obj withCompletion:^(BOOL success, NSError * _Nullable error) {
         
